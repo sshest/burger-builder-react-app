@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { IngredientType } from './IngredientType';
 import classes from './BurgerIngredient.css';
+
+export const IngredientType = {
+    breadBottom: 'BreadBottom',
+    breadTop: 'BreadTop',
+    meat: 'Meat',
+    cheese: 'Cheese',
+    bacon: 'Bacon',
+    salad: 'Salad'
+};
 
 class BurgerIngredient extends Component {
     static propTypes = {
