@@ -51,7 +51,6 @@ class BurgerIngredient extends Component {
 
         return ingredient;
     }
-
 }
 
 export default BurgerIngredient;
