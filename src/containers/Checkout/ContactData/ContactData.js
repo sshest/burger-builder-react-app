@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import axios from '../../../axois-orders';
+import withErrorHandler from '../../../hoc/withErrorHandler';
+import * as orderActions from '../../store/actions/index';
 
 import classes from './ContactData.css';
 
@@ -35,8 +37,8 @@ class ContactData extends Component {
             deliveryMethod: 'fastest'
         };
         this.setState({loading: true});
-
-    }
+        this.props.onOrder(order);
+    };
 
     render() {
         const form = this.state.loading ? <Spinner/> : (
@@ -64,4 +66,10 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrder: (orderData) => dispatch(orderActions.purchaseBurgerStart(orderData))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
