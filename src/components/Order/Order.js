@@ -1,13 +1,12 @@
 import React from 'react';
 
 import classes from './Order.css';
-import BurgerIngredient from "../Burger/BurgerIngredient/BurgerIngredient";
 
 const order = (props) => {
-    let ingredientsArray = Object.keys(props.ingredients)
-        .map(key => {
-            return [...Array(props.ingredients[key])].map((_, i) => {
-                return <span
+    console.log(props.ingredients);
+    const ingredientsArray = [];
+    for (const [key, value] of Object.entries(props.ingredients)) {
+        ingredientsArray.push(<span
                     style={{
                         textTransform: 'capitalize',
                         display: 'inline-block',
@@ -15,12 +14,8 @@ const order = (props) => {
                         padding: '5px',
                         border: '1px solid #ccc'
                     }}
-                    key={key}>{key} ({props.ingredients[key].amount})</span>
-            })
-        })
-        .reduce((arr, el) => {
-            return arr.concat(el)
-        }, []);
+                    key={key}>{key} ({value})</span>);
+            }
 
     return (
         <div className={classes.Order}>
