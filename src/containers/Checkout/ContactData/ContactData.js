@@ -5,7 +5,7 @@ import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import axios from '../../../axois-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler';
-import * as orderActions from '../../store/actions/index';
+import * as orderActions from '../../../store/actions/index';
 
 import classes from './ContactData.css';
 
@@ -16,8 +16,7 @@ class ContactData extends Component {
         address: {
             street: '',
             postalCode: ''
-        },
-        loading: false
+        }
     };
 
     orderHandler = (event) => {
@@ -41,7 +40,7 @@ class ContactData extends Component {
     };
 
     render() {
-        const form = this.state.loading ? <Spinner/> : (
+        const form = this.props.loading ? <Spinner/> : (
             <form>
                 <input className={classes.Input} type="text" name="name" placeholder="Your Name"/>
                 <input className={classes.Input} type="text" name="email" placeholder="Your Email"/>
@@ -62,13 +61,14 @@ class ContactData extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        loading: state.loading
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrder: (orderData) => dispatch(orderActions.purchaseBurgerStart(orderData))
+        onOrder: (orderData) => dispatch(orderActions.purchaseBurger(orderData))
     }
 };
 
