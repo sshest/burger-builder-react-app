@@ -19,9 +19,9 @@ function App() {
       <Layout>
           <Suspense fallback={<p>Loading...</p>}>
               <Switch>
-                  <Route path="/checkout" render={() => <Checkout />} />
-                  <Route path="/orders" render={() => <Orders />} />
-                  <Route path="/" render={() => <BurgerBuilder />}/>
+                  <Route path="/checkout" render={(props) => <Checkout {...props} />} />
+                  <Route path="/orders" render={(props) => <Orders {...props} />} />
+                  <Route path="/" render={(props) => <BurgerBuilder {...props} />} />
               </Switch>
           </Suspense>
       </Layout>
