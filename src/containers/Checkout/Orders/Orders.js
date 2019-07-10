@@ -10,6 +10,7 @@ import * as actions from '../../../store/actions/index';
 const Orders = props => {
     useEffect(() => {
         props.onFetchOrders();
+        // eslint-disable-next-line
     }, []);
 
 
