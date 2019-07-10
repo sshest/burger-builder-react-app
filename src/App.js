@@ -5,11 +5,11 @@ import './App.css';
 import Layout from './components/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
-const Checkout = React.Lazy(() => {
+const Checkout = React.lazy(() => {
     return import('./containers/Checkout/Checkout');
 });
 
-const Orders = React.Lazy(() => {
+const Orders = React.lazy(() => {
     return import('./containers/Checkout/Orders/Orders');
 });
 
