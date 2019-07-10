@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+
 import './App.css';
-import asyncComponent from './hoc/asyncComponent';
 import Layout from './components/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
-const asyncCheckout = asyncComponent(() => {
+const Checkout = React.Lazy(() => {
     return import('./containers/Checkout/Checkout');
 });
 
-const asyncOrders = asyncComponent(() => {
+const Orders = React.Lazy(() => {
     return import('./containers/Checkout/Orders/Orders');
 });
 
@@ -17,11 +17,13 @@ function App() {
   return (
     <div className="App">
       <Layout>
-          <Switch>
-              <Route path="/checkout" component={asyncCheckout} />
-              <Route path="/orders" component={asyncOrders} />
-              <Route path="/" component={BurgerBuilder}/>
-          </Switch>
+          <Suspense fallback={<p>Loading...</p>}>
+              <Switch>
+                  <Route path="/checkout" render={() => <Checkout />} />
+                  <Route path="/orders" render={() => <Orders />} />
+                  <Route path="/" render={() => <BurgerBuilder />}/>
+              </Switch>
+          </Suspense>
       </Layout>
     </div>
   );
